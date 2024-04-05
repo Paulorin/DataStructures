@@ -1,6 +1,6 @@
 package org.example;
 
-public class Node {
+public class Node<T> {
     Object nodeValue;
     Node nextNode;
 
@@ -9,17 +9,17 @@ public class Node {
         this.nextNode = null;
     }
 
-    public Node(Object value){
+    public Node(T value){
         this.nodeValue = value;
         this.nextNode = null;
     }
 
-    public void setNodeValue(Object value){
+    public void setNodeValue(T value){
         this.nodeValue = value;
     }
 
-    public Object getNodeValue(){
-        return this.nodeValue;
+    public T getNodeValue(){
+        return (T) this.nodeValue;
     }
 
     public Node getNextNode(){

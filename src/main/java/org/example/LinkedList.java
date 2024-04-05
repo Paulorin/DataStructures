@@ -1,16 +1,14 @@
 package org.example;
 
-public class LinkedList {
-    Node head;
-    public LinkedList(){
-        this.head = new Node();
-    }
-    
-    public void add(Object value) {
-        if (head.getNodeValue() == null) {
-            head.setNodeValue(value);
+public class LinkedList<T>{
+    Node<T> head;
+
+
+    public void add(T value) {
+        if(head == null){
+            head = new Node(value);
         }
-        else {
+        else{
             Node currentNode = head.getNextNode();
             Node previousNode = head;
             while(currentNode != null){
@@ -21,7 +19,23 @@ public class LinkedList {
         }
     }
 
-    @Override
+
+    public int size(){
+        if(head == null){
+            return 0;
+        }
+        else {
+            int size = 1;
+            Node nextNode = head.getNextNode();
+            while (nextNode != null) {
+                nextNode = nextNode.getNextNode();
+                size++;
+            }
+            return size;
+        }
+    }
+
+
     public String toString() {
         return "LinkedList{"  + head.toString() + '}';
     }
