@@ -1,9 +1,6 @@
 import org.example.LinkedList;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TestLinkedList {
 
     @Test
@@ -47,6 +44,23 @@ public class TestLinkedList {
         linkedList.add(2);
         linkedList.add(3);
         linkedList.add(4);
+        System.out.println(linkedList.toString());
+        System.out.println(linkedList.size());
+    }
+
+    @Test
+    public void ShouldRemoveFirstElement(){
+        LinkedList linkedList = new LinkedList();
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        linkedList.add(4);
+        System.out.println(">> Before removal:");
+        System.out.println(linkedList.toString());
+        System.out.println(linkedList.size());
+
+        System.out.println(">> After removal:");
+        linkedList.remove();
         System.out.println(linkedList.toString());
         System.out.println(linkedList.size());
     }
