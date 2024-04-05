@@ -1,6 +1,6 @@
 package org.example;
 
-public class LinkedList<T>{
+public class LinkedList<T> {
     Node<T> head;
     int listSize;
     public LinkedList(){
@@ -31,6 +31,24 @@ public class LinkedList<T>{
     public void remove(){
         head = head.getNextNode();
         listSize--;
+    }
+
+    public void remove(int index){
+        if(index > 0 || index < listSize - 1){
+            Node<T> currentNode = head.getNextNode();
+            Node<T> previousNode = head;
+            int count = 1;
+            while(count != index){
+                previousNode = currentNode;
+                currentNode = currentNode.getNextNode();
+                count++;
+            }
+            previousNode.setNextNode(currentNode.getNextNode());
+            listSize--;
+        }
+        else{
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
     }
 
     public String toString() {
