@@ -270,4 +270,103 @@ public class TestLinkedList {
 
         assertThat(exceptionThrown).isTrue();
     }
+
+    @Test
+    public void shouldHasNextReturnFalse(){
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        Iterator<Integer> iter = linkedList.iterator();
+        assertThat(iter.hasNext()).isFalse();
+    }
+
+    @Test
+    public void shouldThrowNoSuchElementExceptionForEmptyList(){
+        LinkedList<Integer> linkedList = new LinkedList<>();
+
+        boolean exceptionThrown = false;
+        try{
+            linkedList.remove();
+        }
+        catch(NoSuchElementException e){
+            exceptionThrown = true;
+        }
+
+        assertThat(exceptionThrown).isTrue();
+    }
+
+    @Test
+    public void shouldRemovePassedElement(){
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        assertThat(linkedList.size()).isEqualTo(3);
+
+
+        assertThat(linkedList.remove((Integer) 2)).isTrue();
+        for(Integer element : linkedList){
+            System.out.println(element);
+        }
+    }
+
+    @Test
+    public void shouldReturnFalseOnNonExistingElementRemoval(){
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        assertThat(linkedList.size()).isEqualTo(3);
+
+
+        assertThat(linkedList.remove((Integer) 10)).isFalse();
+        for(Integer element : linkedList){
+            System.out.println(element);
+        }
+    }
+
+    @Test
+    public void shouldReturnTrueContainsAll(){
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        assertThat(linkedList.size()).isEqualTo(3);
+
+        LinkedList<Integer> linkedList2 = new LinkedList<>();
+        linkedList2.add(1);
+        linkedList2.add(2);
+        linkedList2.add(3);
+        assertThat(linkedList2.size()).isEqualTo(3);
+
+        assertThat(linkedList.containsAll(linkedList2)).isTrue();
+    }
+
+    @Test
+    public void shuldReturnFalseContainsAll(){
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        assertThat(linkedList.size()).isEqualTo(3);
+
+        LinkedList<Integer> linkedList2 = new LinkedList<>();
+        linkedList2.add(1);
+        linkedList2.add(4);
+        assertThat(linkedList2.size()).isEqualTo(2);
+
+        assertThat(linkedList.containsAll(linkedList2)).isFalse();
+    }
+
+    @Test
+    public void shouldConvertListToArray(){
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        assertThat(linkedList.size()).isEqualTo(3);
+
+        Object[] array = linkedList.toArray();
+        for(int i = 0; i < array.length; i++){
+            System.out.println(array[i]);
+        }
+    }
 }

@@ -13,4 +13,9 @@ public class TestJavaCollections {
         list.add(null);
         System.out.println(list.size());
     }
+
+    @Test
+    public void test(){
+
+    }
 }
