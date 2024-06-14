@@ -1,4 +1,5 @@
-import org.assertj.core.api.Assertions;
+package dataStructuresTests;
+
 import org.example.LinkedList;
 import org.junit.jupiter.api.Test;
 
@@ -368,5 +369,24 @@ public class TestLinkedList {
         for(int i = 0; i < array.length; i++){
             System.out.println(array[i]);
         }
+    }
+
+    @Test
+    public void shouldClearList() {
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        assertThat(linkedList.size()).isEqualTo(3);
+
+        linkedList.clear();
+        assertThat(linkedList.size()).isEqualTo(0);
+        linkedList.add(6);
+
+        for(Integer element : linkedList){
+            System.out.println(element);
+        }
+
+        System.out.println(linkedList.getFirst());
     }
 }

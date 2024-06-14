@@ -7,17 +7,12 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
-/**
- * To do:
- * Create add methods to insert element in linked list,
- * Understand how to implement iterator in linked list datastructure
- * @param <T>
- */
-// add list interface methods imlementations
-public class LinkedList<T> implements List<T>, Iterable<T>{
+
+public class LinkedList<T> implements List<T>, Iterable<T> {
     private Node<T> head;
     private int listSize;
-    public LinkedList(){
+
+    public LinkedList() {
         this.listSize = 0;
     }
 
@@ -25,7 +20,7 @@ public class LinkedList<T> implements List<T>, Iterable<T>{
         if(head == null){
             head = new Node<>(value);
         }
-        else{
+        else {
             Node<T> currentNode = head.nextNode;
             Node<T> previousNode = head;
             while(currentNode != null){
@@ -81,7 +76,8 @@ public class LinkedList<T> implements List<T>, Iterable<T>{
 
     @Override
     public void clear() {
-
+        head = null;
+        listSize = 0;
     }
 
     @Override
@@ -113,7 +109,7 @@ public class LinkedList<T> implements List<T>, Iterable<T>{
         return false;
     }
 
-    public void remove(){
+    public void remove() {
         if(listSize == 0){
             throw new NoSuchElementException("List is empty");
         }
@@ -122,7 +118,7 @@ public class LinkedList<T> implements List<T>, Iterable<T>{
         iter.remove();
     }
 
-    public T remove(int index){
+    public T remove(int index) {
         T element = null;
         if(index > 0 && index < listSize){
             LinkedListIterator<T> iter = (LinkedListIterator<T>) iterator();
@@ -167,11 +163,6 @@ public class LinkedList<T> implements List<T>, Iterable<T>{
 
     public String toString() {
         return "LinkedList{"  + head.toString() + '}';
-    }
-
-    @Override
-    public Iterator<T> iterator() {
-        return new LinkedListIterator<>(this);
     }
 
     @Override
@@ -226,6 +217,11 @@ public class LinkedList<T> implements List<T>, Iterable<T>{
         }
     }
 
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedListIterator<>(this);
+    }
+
     private static class LinkedListIterator<T> implements Iterator<T> {
         private final LinkedList<T> linkedList;
         private Node<T> node;
@@ -237,6 +233,7 @@ public class LinkedList<T> implements List<T>, Iterable<T>{
             node.nextNode = list.head;
             this.previousNode = null;
         }
+
         @Override
         public boolean hasNext() {
             return node.nextNode != null;
@@ -260,7 +257,7 @@ public class LinkedList<T> implements List<T>, Iterable<T>{
         @Override
         public void remove() {
             if(node.nextNode == linkedList.head){
-                throw new IllegalStateException("Error iterator doesn't refer element");
+                throw new IllegalStateException("Exception: Iterator doesn't refer element");
             }
             if(previousNode == node){
                 linkedList.head = node.nextNode;
